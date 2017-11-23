@@ -192,7 +192,7 @@ namespace Xwt.GtkBackend
 					ctype = Gdk.CursorType.Crosshair;
 				else if (cursor == CursorType.Hand)
 					ctype = Gdk.CursorType.Hand1;
-				else if (cursor == CursorType.OpenHand)
+				else if (cursor == CursorType.Hand2 || cursor == CursorType.Drag)
 					ctype = Gdk.CursorType.Hand2;
 				else if (cursor == CursorType.IBeam)
 					ctype = Gdk.CursorType.Xterm;
@@ -208,6 +208,14 @@ namespace Xwt.GtkBackend
 					ctype = Gdk.CursorType.SbHDoubleArrow;
 				else if (cursor == CursorType.ResizeUpDown)
 					ctype = Gdk.CursorType.SbVDoubleArrow;
+				else if (cursor == CursorType.ResizeNE)
+					ctype = Gdk.CursorType.TopRightCorner;
+				else if (cursor == CursorType.ResizeNW)
+					ctype = Gdk.CursorType.TopLeftCorner;
+				else if (cursor == CursorType.ResizeSE)
+					ctype = Gdk.CursorType.BottomRightCorner;
+				else if (cursor == CursorType.ResizeSW)
+					ctype = Gdk.CursorType.BottomLeftCorner;
 				else if (cursor == CursorType.Move)
 					ctype = Gdk.CursorType.Fleur;
 				else if (cursor == CursorType.Wait)

@@ -222,6 +222,8 @@ namespace Xwt.Mac
 				Cursor = NSCursor.CrosshairCursor;
 			else if (cursor == CursorType.Hand)
 				Cursor = NSCursor.OpenHandCursor;
+			else if (cursor == CursorType.Hand2)
+				Cursor = NSCursor.PointingHandCursor;
 			else if (cursor == CursorType.IBeam)
 				Cursor = NSCursor.IBeamCursor;
 			else if (cursor == CursorType.ResizeDown)
