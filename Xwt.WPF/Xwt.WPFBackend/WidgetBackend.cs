@@ -433,29 +433,42 @@ namespace Xwt.WPFBackend
 			// Nothing needs to be done here
 		}
 
-		public void SetCursor(CursorType cursor)
+		public void SetCursor (CursorType cursor)
 		{
-			var cursors = new System.Collections.Generic.Dictionary<CursorType, Cursor> {
-				{ CursorType.Arrow, Cursors.Arrow },
-				{ CursorType.Crosshair, Cursors.Cross },
-				{ CursorType.Hand, Cursors.Hand },
-				{ CursorType.IBeam, Cursors.IBeam },
-				{ CursorType.ResizeDown, Cursors.SizeNS },
-				{ CursorType.ResizeUp, Cursors.SizeNS },
-				{ CursorType.ResizeUpDown, Cursors.SizeNS },
-				{ CursorType.ResizeLeft, Cursors.SizeWE },
-				{ CursorType.ResizeRight, Cursors.SizeWE },
-				{ CursorType.ResizeLeftRight, Cursors.SizeWE },
-				{ CursorType.Resize45, Cursors.SizeNESW },
-				{ CursorType.Resize135, Cursors.SizeNWSE },
-				{ CursorType.Resize225, Cursors.SizeNESW },
-				{ CursorType.Resize315, Cursors.SizeNWSE },
-				{ CursorType.Move, Cursors.SizeAll },
-				{ CursorType.Wait, Cursors.Wait },
-				{ CursorType.Help, Cursors.Help },
-				{ CursorType.Invisible, Cursors.None }
-			};
-			Widget.Cursor = cursors.ContainsKey(cursor) ? cursors[cursor] : Cursors.Arrow;
+			if (cursor == CursorType.Arrow)
+				Widget.Cursor = Cursors.Arrow;
+			else if (cursor == CursorType.Crosshair)
+				Widget.Cursor = Cursors.Cross;
+			else if (cursor == CursorType.Hand)
+				Widget.Cursor = Cursors.Hand;
+			else if (cursor == CursorType.IBeam)
+				Widget.Cursor = Cursors.IBeam;
+			else if (cursor == CursorType.ResizeDown)
+				Widget.Cursor = Cursors.SizeNS;
+			else if (cursor == CursorType.ResizeUp)
+				Widget.Cursor = Cursors.SizeNS;
+			else if (cursor == CursorType.ResizeUpDown)
+				Widget.Cursor = Cursors.SizeNS;
+			else if (cursor == CursorType.ResizeLeft)
+				Widget.Cursor = Cursors.SizeWE;
+			else if (cursor == CursorType.ResizeRight)
+				Widget.Cursor = Cursors.SizeWE;
+			else if (cursor == CursorType.ResizeLeftRight)
+				widget.Cursor = Cursors.SizeWE;
+			else if (cursor == CursorType.ResizeNESW)
+				widget.Cursor = Cursors.SizeNESW;
+			else if (cursor == CursorType.ResizeNWSE)
+				widget.Cursor = Cursors.SizeNWSE;
+			else if (cursor == CursorType.Move)
+				widget.Cursor = Cursors.SizeAll;
+			else if (cursor == CursorType.Wait)
+				widget.Cursor = Cursors.Wait;
+			else if (cursor == CursorType.Help)
+				widget.Cursor = Cursors.Help;
+			else if (cursor == CursorType.Invisible)
+				widget.Cursor = Cursors.None;
+			else
+				Widget.Cursor = Cursors.Arrow;
 		}
 		
 		public virtual void UpdateLayout ()

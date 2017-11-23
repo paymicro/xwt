@@ -214,25 +214,37 @@ namespace Xwt.Mac
 
 		internal NSCursor Cursor { get; private set; }
 
-		public void SetCursor(CursorType cursor)
+		public void SetCursor (CursorType cursor)
 		{
-			var cursors = new Dictionary<CursorType, NSCursor> {
-				{ CursorType.Arrow, NSCursor.ArrowCursor },
-				{ CursorType.Crosshair, NSCursor.CrosshairCursor },
-				{ CursorType.Hand, NSCursor.PointingHandCursor },
-				{ CursorType.OpenHand, NSCursor.OpenHandCursor },
-				{ CursorType.IBeam, NSCursor.IBeamCursor },
-				{ CursorType.ResizeDown, NSCursor.ResizeDownCursor },
-				{ CursorType.ResizeUp, NSCursor.ResizeUpCursor },
-				{ CursorType.ResizeUpDown, NSCursor.ResizeDownCursor },
-				{ CursorType.ResizeLeft, NSCursor.ResizeLeftCursor },
-				{ CursorType.ResizeRight, NSCursor.ResizeRightCursor },
-				{ CursorType.ResizeLeftRight, NSCursor.ResizeLeftRightCursor },
-				{ CursorType.Move, NSCursor.ClosedHandCursor },
-				{ CursorType.Drag, NSCursor.DragCopyCursor },
-				{ CursorType.Invisible, NSCursor.ArrowCursor } // TODO: load transparent cursor
-			};
-			Cursor = cursors.ContainsKey(cursor) ? cursors[cursor] : NSCursor.ArrowCursor;
+			if (cursor == CursorType.Arrow)
+				Cursor = NSCursor.ArrowCursor;
+			else if (cursor == CursorType.Crosshair)
+				Cursor = NSCursor.CrosshairCursor;
+			else if (cursor == CursorType.Hand)
+				Cursor = NSCursor.OpenHandCursor;
+			else if (cursor == CursorType.IBeam)
+				Cursor = NSCursor.IBeamCursor;
+			else if (cursor == CursorType.ResizeDown)
+				Cursor = NSCursor.ResizeDownCursor;
+			else if (cursor == CursorType.ResizeUp)
+				Cursor = NSCursor.ResizeUpCursor;
+			else if (cursor == CursorType.ResizeLeft)
+				Cursor = NSCursor.ResizeLeftCursor;
+			else if (cursor == CursorType.ResizeRight)
+				Cursor = NSCursor.ResizeRightCursor;
+			else if (cursor == CursorType.ResizeLeftRight)
+				Cursor = NSCursor.ResizeLeftRightCursor;
+			else if (cursor == CursorType.ResizeUpDown)
+				Cursor = NSCursor.ResizeUpDownCursor;
+			else if (cursor == CursorType.Invisible)
+				// TODO: load transparent cursor
+				Cursor = NSCursor.ArrowCursor;
+			else if (cursor == CursorType.Move)
+				Cursor = NSCursor.ClosedHandCursor;
+			else if (cursor == CursorType.Drag)
+				Cursor = NSCursor.DragCopyCursor;
+			else
+				Cursor = NSCursor.ArrowCursor;
 		}
 		
 		~ViewBackend ()

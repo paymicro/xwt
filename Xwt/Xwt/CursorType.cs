@@ -53,10 +53,8 @@ namespace Xwt
 		public static readonly CursorType ResizeUp = new CursorType ("ResizeUp");
 		public static readonly CursorType ResizeDown = new CursorType ("ResizeDown");
 		public static readonly CursorType ResizeUpDown = new CursorType ("ResizeUpDown");
-		public static readonly CursorType Resize45 = new CursorType("Resize45");
-		public static readonly CursorType Resize135 = new CursorType("Resize135");
-		public static readonly CursorType Resize225 = new CursorType("Resize225");
-		public static readonly CursorType Resize315 = new CursorType("Resize315");
+		public static readonly CursorType ResizeNESW = new CursorType("ResizeNESW");
+		public static readonly CursorType ResizeNWSE = new CursorType("ResizeNWSE");
 		public static readonly CursorType Hand = new CursorType ("Hand");
 		public static readonly CursorType OpenHand = new CursorType("OpenHand");
 		public static readonly CursorType Move = new CursorType ("Move");
@@ -64,6 +62,7 @@ namespace Xwt
 		public static readonly CursorType Help = new CursorType ("Help");
 		public static readonly CursorType Invisible = new CursorType ("Invisible");
 		public static readonly CursorType Drag = new CursorType("Drag");
+
 
 		class CursorTypeValueConverter: TypeConverter
 		{
@@ -103,8 +102,6 @@ namespace Xwt
 				return ct;
 			}
 		}
-
-		public override string ToString() => id;
-    }
+	}
 }
 
