@@ -185,38 +185,24 @@ namespace Xwt.GtkBackend
 			CurrentCursor = cursor;
 			Gdk.Cursor gc;
 			if (!gtkCursors.TryGetValue (cursor, out gc)) {
-				Gdk.CursorType ctype;
-				if (cursor == CursorType.Arrow)
-					ctype = Gdk.CursorType.LeftPtr;
-				else if (cursor == CursorType.Crosshair)
-					ctype = Gdk.CursorType.Crosshair;
-				else if (cursor == CursorType.Hand)
-					ctype = Gdk.CursorType.Hand1;
-				else if (cursor == CursorType.IBeam)
-					ctype = Gdk.CursorType.Xterm;
-				else if (cursor == CursorType.ResizeDown)
-					ctype = Gdk.CursorType.BottomSide;
-				else if (cursor == CursorType.ResizeUp)
-					ctype = Gdk.CursorType.TopSide;
-				else if (cursor == CursorType.ResizeLeft)
-					ctype = Gdk.CursorType.LeftSide;
-				else if (cursor == CursorType.ResizeRight)
-					ctype = Gdk.CursorType.RightSide;
-				else if (cursor == CursorType.ResizeLeftRight)
-					ctype = Gdk.CursorType.SbHDoubleArrow;
-				else if (cursor == CursorType.ResizeUpDown)
-					ctype = Gdk.CursorType.SbVDoubleArrow;
-				else if (cursor == CursorType.Move)
-					ctype = Gdk.CursorType.Fleur;
-				else if (cursor == CursorType.Wait)
-					ctype = Gdk.CursorType.Watch;
-				else if (cursor == CursorType.Help)
-					ctype = Gdk.CursorType.QuestionArrow;
-				else if (cursor == CursorType.Invisible)
-					ctype = (Gdk.CursorType)(-2); // Gdk.CursorType.None, since Gtk 2.16
-				else
-					ctype = Gdk.CursorType.Arrow;
-				
+				var cursors = new Dictionary<CursorType, Gdk.CursorType> {
+					{ CursorType.Arrow, Gdk.CursorType.LeftPtr },
+					{ CursorType.Crosshair, Gdk.CursorType.Crosshair },
+					{ CursorType.Hand, Gdk.CursorType.Hand1 },
+					{ CursorType.OpenHand, Gdk.CursorType.Hand2 },
+					{ CursorType.IBeam, Gdk.CursorType.Xterm },
+					{ CursorType.ResizeDown, Gdk.CursorType.BottomSide },
+					{ CursorType.ResizeUp, Gdk.CursorType.TopSide },
+					{ CursorType.ResizeUpDown, Gdk.CursorType.SbVDoubleArrow },
+					{ CursorType.ResizeLeft, Gdk.CursorType.LeftSide },
+					{ CursorType.ResizeRight, Gdk.CursorType.RightSide },
+					{ CursorType.ResizeLeftRight, Gdk.CursorType.SbHDoubleArrow },
+					{ CursorType.Move, Gdk.CursorType.Fleur },
+					{ CursorType.Wait, Gdk.CursorType.Watch },
+					{ CursorType.Help, Gdk.CursorType.QuestionArrow },
+					{ CursorType.Invisible, (Gdk.CursorType)(-2) }, // Gdk.CursorType.None, since Gtk 2.16
+				};
+				Gdk.CursorType ctype = cursors.ContainsKey(cursor) ? cursors[cursor] : Gdk.CursorType.Arrow;
 				gtkCursors [cursor] = gc = new Gdk.Cursor (ctype);
 			}
 
