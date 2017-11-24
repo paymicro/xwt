@@ -214,5 +214,11 @@
     <EmbeddedResource Include="icons\resize-NWSE-16.png">
       <LogicalName>resize-NWSE-16.png</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="icons\resize-NESW-16%402x.png">
+      <LogicalName>resize-NESW-16@2x.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="icons\resize-NWSE-16%402x.png">
+      <LogicalName>resize-NWSE-16@2x.png</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

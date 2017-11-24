@@ -216,16 +216,17 @@ namespace Xwt.Mac
 
 		static readonly Toolkit macToolkit = Toolkit.Load(ToolkitType.XamMac);
 
-		static NSCursor GetCursorFromResource(string resourceName, CGPoint center) {
+		static NSCursor GetCursorFromResource(string resourceName) {
 			var resource = Drawing.Image.FromResource(resourceName);
-			if (resource == null)
+			var image = macToolkit?.GetNativeImage(resource) as NSImage;
+			if (image == null)
 				return NSCursor.ArrowCursor;
-			var image = (NSImage)macToolkit?.GetNativeImage(resource);
-			return image != null ? new NSCursor(image, center) : NSCursor.ArrowCursor;
+			var center = new CGPoint(image.Size.Width / 2, image.Size.Height / 2);
+			return new NSCursor(image, center);
 		}
 
-		static readonly NSCursor resizeNWSE = GetCursorFromResource("resize-NWSE-16.png", new CGPoint(8, 8));
-		static readonly NSCursor resizeNESW = GetCursorFromResource("resize-NESW-16.png", new CGPoint(8, 8));
+		static readonly Lazy<NSCursor> resizeNWSE = new Lazy<NSCursor>(() => GetCursorFromResource("resize-NWSE-16.png"));
+		static readonly Lazy<NSCursor> resizeNESW = new Lazy<NSCursor>(() => GetCursorFromResource("resize-NESW-16.png"));
 
 		public void SetCursor (CursorType cursor)
 		{
@@ -252,9 +253,9 @@ namespace Xwt.Mac
 			else if (cursor == CursorType.ResizeUpDown)
 				Cursor = NSCursor.ResizeUpDownCursor;
 			else if (cursor == CursorType.ResizeNW || cursor == CursorType.ResizeSE)
-				Cursor = resizeNWSE;
+				Cursor = resizeNWSE.Value;
 			else if (cursor == CursorType.ResizeNE || cursor == CursorType.ResizeSW)
-				Cursor = resizeNESW;
+				Cursor = resizeNESW.Value;
 			else if (cursor == CursorType.Invisible)
 				// TODO: load transparent cursor
 				Cursor = NSCursor.ArrowCursor;
