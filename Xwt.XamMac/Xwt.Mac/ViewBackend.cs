@@ -214,6 +214,20 @@ namespace Xwt.Mac
 
 		internal NSCursor Cursor { get; private set; }
 
+		static readonly Toolkit macToolkit = Toolkit.Load(ToolkitType.XamMac);
+
+		static NSCursor GetCursorFromResource(string resourceName) {
+			var resource = Drawing.Image.FromResource(resourceName);
+			var image = macToolkit?.GetNativeImage(resource) as NSImage;
+			if (image == null)
+				return NSCursor.ArrowCursor;
+			var center = new CGPoint(image.Size.Width / 2, image.Size.Height / 2);
+			return new NSCursor(image, center);
+		}
+
+		static readonly Lazy<NSCursor> resizeNWSE = new Lazy<NSCursor>(() => GetCursorFromResource("resizenorthwestsoutheast.png"));
+		static readonly Lazy<NSCursor> resizeNESW = new Lazy<NSCursor>(() => GetCursorFromResource("resizenortheastsouthwest.png"));
+
 		public void SetCursor (CursorType cursor)
 		{
 			if (cursor == CursorType.Arrow)
@@ -236,6 +250,10 @@ namespace Xwt.Mac
 				Cursor = NSCursor.ResizeLeftRightCursor;
 			else if (cursor == CursorType.ResizeUpDown)
 				Cursor = NSCursor.ResizeUpDownCursor;
+			else if (cursor == CursorType.ResizeNW || cursor == CursorType.ResizeSE)
+				Cursor = resizeNWSE.Value;
+			else if (cursor == CursorType.ResizeNE || cursor == CursorType.ResizeSW)
+				Cursor = resizeNESW.Value;
 			else if (cursor == CursorType.Invisible)
 				// TODO: load transparent cursor
 				Cursor = NSCursor.ArrowCursor;
