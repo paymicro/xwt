@@ -208,5 +208,11 @@
     <EmbeddedResource Include="icons\zoom-out-16~sel%402x.png">
       <LogicalName>zoom-out-16~sel@2x.png</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="icons\resize-NESW-16.png">
+      <LogicalName>resize-NESW-16.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="icons\resize-NWSE-16.png">
+      <LogicalName>resize-NWSE-16.png</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
